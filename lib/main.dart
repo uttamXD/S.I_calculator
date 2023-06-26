@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String p = '', t = '', r = '', result = '';
+  String p = '', y = '', m = '', d = '', r = '', result = '', t = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,14 +55,64 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 5,
               ),
-              //For Time
+              //For Years
               TextField(
                 onChanged: (value) {
-                  t = value;
+                  y = value;
                 },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  hintText: "Enter Time",
+                  hintText: "Enter Years",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              //For Months
+              TextField(
+                onChanged: (value) {
+                  m = value;
+                },
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: "Enter Months",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              //For Days
+              TextField(
+                onChanged: (value) {
+                  d = value;
+                },
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: "Enter Days",
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.black,
@@ -105,6 +155,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 50,
               ),
+
               //For Button
               MaterialButton(
                   shape: RoundedRectangleBorder(
@@ -119,6 +170,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onPressed: () {
                     setState(() {
+                      t = (double.parse(y) +
+                              (double.parse(m) / 12) +
+                              ((double.parse(d) / 30) / 12))
+                          .toString();
                       result = ((double.parse(p) *
                                   double.parse(t) *
                                   double.parse(r)) /
